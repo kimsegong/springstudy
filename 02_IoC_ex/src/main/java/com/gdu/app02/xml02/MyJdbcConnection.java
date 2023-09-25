@@ -3,6 +3,14 @@ package com.gdu.app02.xml02;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class MyJdbcConnection {
 
   private String driver;    // oracle.jdbc.OracleDriver
