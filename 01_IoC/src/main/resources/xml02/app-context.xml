@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- Namespaces 탭의 "p" 옵션 체크로 <property> 태그를 <bean> 태그의 속성으로 넣을 수 있다. -->
+  
+  <!-- 
+      User user = new User();
+      user.setUserNo(1); 
+      user.setUserId("admin");
+   -->
+   <bean class="com.gdu.app01.xml02.User" id="user" p:userNo="1" p:userId="admin"/>
+
+  <!-- 
+      Board board = new Board();
+      board.setTitle("공지사항");
+      board.setEditor("user");
+   -->
+   <bean class="com.gdu.app01.xml02.Board" id="board" p:title="공지사항" p:editor-ref="user"/>
+
+</beans>

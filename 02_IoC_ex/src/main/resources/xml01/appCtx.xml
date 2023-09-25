@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <!-- Contact, Address, Person bean 만들기(<property>, <constructor-arg>) -->
+  <bean class="com.gdu.app02.xml01.Contact" id="contact" >
+    <property name="mobile" value="010-2222-2222"/>
+    <property name="fax" value=""/>
+  </bean>
+  <bean class="com.gdu.app02.xml01.Address" id="address">
+    <property name="postcode" value="2341"/>
+    <property name="jibun" value="231"/>
+    <property name="road" value="232"/>
+  </bean>
+  <bean class="com.gdu.app02.xml01.Person" id="person">
+    <constructor-arg value="콩순이"></constructor-arg>
+    <constructor-arg ref="contact"></constructor-arg>
+    <constructor-arg ref="address"></constructor-arg>
+  </bean>
+</beans>

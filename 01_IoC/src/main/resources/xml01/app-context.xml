@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- Calculator calc = new Calculator(); -->
+  <bean class="com.gdu.app01.xml01.Calculator" id="calc" scope="singleton"/>
+  <!-- 
+    1. 디폴트 생성자 + setter 
+      Person man = new Person();
+      man.setName("뽀로로");
+      man.setAge(20);
+      man.setCalculator(calc);
+   -->
+   <bean class="com.gdu.app01.xml01.Person" id="man">
+     <property name="name" value="뽀로로"/>
+     <property name="age" value="20"/>
+     <property name="calculator" ref="calc"/>
+   </bean>
+   
+   <!-- 
+     2. 필드를 이용한 생성자
+       Person woman = new Person("루피", 20, calc);
+    -->
+    <bean class="com.gdu.app01.xml01.Person" id="woman">
+      <constructor-arg value="루피"/>
+      <constructor-arg value="20"/>
+      <constructor-arg ref="calc"/>
+    </bean>
+</beans>
