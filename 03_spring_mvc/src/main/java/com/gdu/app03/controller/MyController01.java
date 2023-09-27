@@ -18,6 +18,7 @@ public class MyController01 {
   3. 매개변수
     1) HttpServletRequest를 선언해서 사용할 수 있다.
     2) HttpServletResponse를 선언해서 사용할 수 있다.
+    3) Model를 선언해서 forward할 정보를 저장할 수 있다.
   4. 요청
     1) 메서드 : GET, POST
     2) URL    : 요청 주소
