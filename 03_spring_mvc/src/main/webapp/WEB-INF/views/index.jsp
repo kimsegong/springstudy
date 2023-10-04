@@ -31,6 +31,23 @@
   <div>
     <a href="${contextPath}/article/add.do?title=이럴수가">기사 등록하기</a>
   </div>
-  ${sessionScope.title}
+
+  <%-- MyController05으로 요청 --%>
+  <div>
+    <form action="${contextPath}/faq/add.do" method="post">
+      <div>
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title">
+      </div>
+      <div>
+        <label for="content">내용</label>
+        <input type="text" id="content" name="content">
+      </div>
+      <div>
+        <button type="submit">작성완료</button>
+      </div>
+    </form>
+  </div>
+  
 </body>
 </html>
