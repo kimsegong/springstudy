@@ -11,7 +11,14 @@
 <body>
 
   <div>
-    <a href="${contextPath}/board/list.do">게시글 목록</a>
+    <a href="${contextPath}/board/list.do">목록으로 이동</a>
+  </div>
+
+  <div>
+    <h3>게시글 상세보기</h3>
+    <div>번호 : ${board.boardNo}</div>
+    <div>제목 : ${board.title}</div>
+    <div>작성 : ${board.editor}</div>
   </div>
 
 </body>

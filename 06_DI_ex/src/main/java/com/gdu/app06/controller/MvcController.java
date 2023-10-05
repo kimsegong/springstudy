@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MvcController {
 
-
   @RequestMapping(value="/", method=RequestMethod.GET)
   public String index() {
     return "index";
   }
+  
 }

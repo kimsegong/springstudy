@@ -11,7 +11,12 @@
 <body>
 
   <div>
-    <a href="${contextPath}/board/list.do">게시글 목록</a>
+    <h3>게시글 목록</h3>
+    <c:forEach items="${boardList}" var="b">
+      <div>
+        <a href="${contextPath}/board/detail.do?boardNo=${b.boardNo}">${b.boardNo} - ${b.title} - ${b.editor}</a>
+      </div>
+    </c:forEach>
   </div>
 
 </body>

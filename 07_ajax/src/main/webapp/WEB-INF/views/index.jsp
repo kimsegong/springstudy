@@ -7,11 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div>
-    <a href="${contextPath}/board/list.do">게시글 목록</a>
+    <a href="${contextPath}/ajax1.do">연습하러가기-1</a>
+    <a href="${contextPath}/ajax2.do">연습하러가기-2</a>
+    <a href="${contextPath}/ajax3.do">연습하러가기-3</a>
   </div>
 
 </body>
