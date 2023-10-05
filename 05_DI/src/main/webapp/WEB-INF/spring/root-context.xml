@@ -5,10 +5,6 @@
   
   <!-- Root Context: defines shared resources visible to all other web components -->
   
-  <bean class="com.gdu.app05.dao.BoardDao" id="boardDao" />
-
-  <bean class="com.gdu.app05.service.BoardServiceImpl" id="boardService">
-    <property name="boardDao" ref="boardDao" />
-  </bean>
+ 
   
 </beans>
