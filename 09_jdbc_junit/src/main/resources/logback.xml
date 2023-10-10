@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <!-- Appenders : 로그를 출력하는 Appender 모음 -->
+  
+  <!--
+    %d{날짜시간패턴} : 로그기록시간 (SimpleDateFormat과 같은 날짜시간패턴)
+    %level           : 로그 레벨 (OFF > ERROR > WARN > INFO > DEBUG > TRACE)
+    %logger          : 로그를 찍는 클래스 (어떤 클래스가 동작할 때 로그가 남겨지는가?)
+    %msg             : 로그 메시지
+    %n               : 줄 바꿈
+  -->
+  
+  <!-- Console에 로그를 찍는 Appender -->
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>[%d{HH:mm:ss, Asia/Seoul}] %-5level:%logger - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- File에 로그를 찍는 Appender -->
+  <appender name="file" class="ch.qos.logback.core.FileAppender">
+    <file>/log/app09_log.log</file>
+    <append>true</append>
+    <immediateFlush>true</immediateFlush>
+    <encoder>
+      <pattern>[%d{HH:mm:ss, Asia/Seoul}] %-5level:%logger - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- 매일 새로운 로그 파일을 만드는 RollingFileAppender -->
+  <appender name="rolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>/log/app09.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <maxFileSize>100MB</maxFileSize>
+      <maxHistory>30</maxHistory>
+      <totalSizeCap>3GB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+      <pattern>[%d{HH:mm:ss, Asia/Seoul}] %-5level:%logger - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- Application Loggers -->
+  <logger name="com.gdu.app09" level="info" />
+  
+  <!-- 3rdparty Loggers -->
+  <logger name="org.springframework" level="info" />
+  <logger name="log4jdbc"            level="info" />
+  <logger name="jdbc.sqlonly"        level="info" />  <!-- 쿼리문 출력하기 -->
+  <logger name="jdbc.sqltiming"      level="off" />   <!-- 쿼리문 + 실행시간 출력하기 -->
+  <logger name="jdbc.resultsettable" level="info" />  <!-- SELECT 결과를 테이블 형식으로 출력하기 -->
+  <logger name="jdbc.connection"     level="off" />   <!-- Connection 연결/종료 정보 출력하기 -->
+  <logger name="jdbc.audit"          level="off" />   <!-- ResultSet을 제외한 jdbc 호출 정보 출력하기 -->
+  <logger name="jdbc.resultset"      level="off" />   <!-- ResultSet을 포함한 jdbc 호출 정보 출력하기 -->
+  
+  <!-- Root Logger -->
+  <root>
+    <priority value="warn" />
+    <appender-ref ref="console" />
+    <appender-ref ref="rolling" />
+  </root>
+  
+</configuration>

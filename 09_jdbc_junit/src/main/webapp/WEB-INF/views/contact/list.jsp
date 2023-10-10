@@ -11,6 +11,7 @@
 <script>
   $(function(){
 	  fnAddResult();
+	  fnDeleteResult();
   })
   
   function fnAddResult() {
@@ -22,6 +23,16 @@
 		 alert('실패했슴둥');
 	   }
 	 }
+  }
+  function fnDeleteResult() {
+	  var deleteResult = '${deleteResult}';
+		 if(deleteResult !== '') {
+		   if(deleteResult === '1') {
+			 alert('연락처가 삭제되었습니다.');
+		   } else {
+			 alert('실패했슴둥');
+		   }
+		 } 
   }
 </script>
 </head>
@@ -44,7 +55,7 @@
         <c:forEach items="${contactList}" var="c" >
           <tr>
             <td>${c.contact_no}</td>
-            <td>${c.name}</td>
+            <td><a href="${contextPath}/contact/detail.do?contact_no=${c.contact_no}">${c.name}</a></td>
             <td>${c.tel}</td>
           </tr>      
         </c:forEach>
