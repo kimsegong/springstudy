@@ -1,72 +1,75 @@
-package com.gdu.app10.controller;
+package com.gdu.app11.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.gdu.app10.dto.ContactDto;
-import com.gdu.app10.service.ContactService;
+import com.gdu.app11.dto.ContactDto;
+import com.gdu.app11.service.ContactService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
- 
-@RequiredArgsConstructor
+@RequiredArgsConstructor  // private final ContactService contactService;에 @Autowired를 하기 위한 코드이다.
 @Controller
 public class ContactController {
+
+  // ContactController를 실행할 때 org.slf4j.Logger가 동작한다.
+  // private static final Logger log = LoggerFactory.getLogger(ContactController.class);
   
-  // ContactController를 실행할 때 org.sl4f.Logget가 동작한다.
- 
- 
   private final ContactService contactService;
   
-  @GetMapping(value="/contact/list.do")
+  @RequestMapping(value="/contact/list.do", method=RequestMethod.GET)
   public String list(Model model) {
     List<ContactDto> contactList = contactService.getContactList();
-    model.addAttribute("contactList", contactService.getContactList());
+    model.addAttribute("contactList", contactList);
     return "contact/list";
   }
-  @GetMapping(value="/contact/write.do")
+  
+  @RequestMapping(value="/contact/write.do", method=RequestMethod.GET)
   public String write() {
     return "contact/write";
   }
-  @PostMapping(value="/contact/add.do")
+  
+  @RequestMapping(value="/contact/add.do", method=RequestMethod.POST)
   public String add(ContactDto contactDto, RedirectAttributes redirectAttributes) {
     int addResult = contactService.addContact(contactDto);
     redirectAttributes.addFlashAttribute("addResult", addResult);
     return "redirect:/contact/list.do";
   }
-  @GetMapping(value="/contact/detail.do")
-  public String detail(@RequestParam(value="contact_no", required=false, defaultValue="0")int contact_no, Model model) {
+  
+  @RequestMapping(value="/contact/detail.do", method=RequestMethod.GET)
+  public String detail(@RequestParam(value="contact_no", required=false, defaultValue="0") int contact_no, Model model) {
     model.addAttribute("contact", contactService.getContactByNo(contact_no));
     return "contact/detail";
   }
-  @PostMapping(value="/contact/modify.do")
+  
+  @RequestMapping(value="/contact/modify.do", method=RequestMethod.POST)
   public String modify(ContactDto contactDto, RedirectAttributes redirectAttributes) {
     int modifyResult = contactService.modifyContact(contactDto);
     redirectAttributes.addFlashAttribute("modifyResult", modifyResult);
     return "redirect:/contact/detail.do?contact_no=" + contactDto.getContact_no();
   }
-  @PostMapping(value = "contact/delete.do")
-  public String delete(@RequestParam(value="contact_no", required=false, defaultValue="0")int contact_no, RedirectAttributes redirectAttributes) {
+  
+  @RequestMapping(value="/contact/delete.do", method=RequestMethod.POST)
+  public String delete(@RequestParam(value="contact_no", required=false, defaultValue="0") int contact_no, RedirectAttributes redirectAttributes) {
     int deleteResult = contactService.deleteContact(contact_no);
     redirectAttributes.addFlashAttribute("deleteResult", deleteResult);
     return "redirect:/contact/list.do";
   }
-  @GetMapping(value="/contact/tx.do")
+  
+  @RequestMapping(value="/contact/tx.do", method=RequestMethod.GET)
   public String txTest() {
     try {
-    contactService.txTest();
-    } catch (Exception e) {
+      contactService.txTest();
+    } catch(Exception e) {
       return "redirect:/contact/list.do";
     }
-    return null; // 동작안하는 코드
+    return null;  // 동작 안하는 코드
   }
-} 
+  
+}

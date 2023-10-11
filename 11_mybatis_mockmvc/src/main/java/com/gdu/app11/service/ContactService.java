@@ -1,10 +1,8 @@
-package com.gdu.app10.service;
+package com.gdu.app11.service;
 
 import java.util.List;
 
-import com.gdu.app10.dto.ContactDto;
-
-
+import com.gdu.app11.dto.ContactDto;
 
 public interface ContactService {
   public int addContact(ContactDto contactDto);
