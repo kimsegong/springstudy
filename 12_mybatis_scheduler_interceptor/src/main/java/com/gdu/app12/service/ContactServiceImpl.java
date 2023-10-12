@@ -1,12 +1,12 @@
-package com.gdu.app11.service;
+package com.gdu.app12.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gdu.app11.dao.ContactDao;
-import com.gdu.app11.dto.ContactDto;
+import com.gdu.app12.dao.ContactMapper;
+import com.gdu.app12.dto.ContactDto;
 
 import lombok.RequiredArgsConstructor;
 @Transactional
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @Service  // ContactService 타입의 객체(Bean)을 Spring Container에 저장한다.
 public class ContactServiceImpl implements ContactService {
 
-  private final ContactDao contactDao;
+  private final ContactMapper contactDao;
   
   @Override
   public int addContact(ContactDto contactDto) {
@@ -56,6 +56,11 @@ public class ContactServiceImpl implements ContactService {
     
     // 실패
     contactDao.insert(new ContactDto());  // NAME 칼럼은 NOT NULL이므로 전달된 이름이 없으면 Exception이 발생한다.
+    
+  }
+  @Override
+  public void deleteOldestContact() {
+   contactDao.deleteOldestContact();
     
   }
 
