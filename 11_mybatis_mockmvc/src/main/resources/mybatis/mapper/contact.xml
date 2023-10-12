@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.contact">
+
+  <insert id="insert" parameterType="ContactDto">
+  INSERT INTO CONTACT_T(CONTACT_NO, NAME, TEL, EMAIL, ADDRESS, CREATED_AT) VALUES(CONTACT_SEQ.NEXTVAL, #{name}, #{tel}, #{email}, #{address}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'))
+  </insert>
+  
+  <update id="update" parameterType="ContactDto">
+  UPDATE CONTACT_T SET NAME = #{name}, TEL = #{tel}, EMAIL = #{email}, ADDRESS = #{address} WHERE CONTACT_NO = #{contactNo}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+  DELETE FROM CONTACT_T WHERE CONTACT_NO = #{contactNo}
+  </delete>
+  
+  <select id="selectList" resultType="ContactDto">
+  SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS, CREATED_AT FROM CONTACT_T ORDER BY CONTACT_NO ASC
+  </select>
+  
+  <select id="selectContactByNo" parameterType="int" resultType="ContactDto">
+  SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS, CREATED_AT FROM CONTACT_T WHERE CONTACT_NO = #{contactNo}
+  </select>
+  
+</mapper>

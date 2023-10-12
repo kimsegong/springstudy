@@ -54,8 +54,8 @@
       <tbody>
         <c:forEach items="${contactList}" var="c" >
           <tr>
-            <td>${c.contact_no}</td>
-            <td><a href="${contextPath}/contact/detail.do?contact_no=${c.contact_no}">${c.name}</a></td>
+            <td>${c.contactNo}</td>
+            <td><a href="${contextPath}/contact/detail.do?contactNo=${c.contactNo}">${c.name}</a></td>
             <td>${c.tel}</td>
           </tr>      
         </c:forEach>

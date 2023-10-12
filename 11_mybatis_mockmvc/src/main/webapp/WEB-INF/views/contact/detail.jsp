@@ -61,7 +61,7 @@
       <input type="text" id="address" name="address" value="${contact.address}">
     </div>
     <div>
-      <input type="hidden" name="contact_no" value="${contact.contact_no}">
+      <input type="hidden" name="contactNo" value="${contact.contactNo}">
       <button type="submit">수정</button>
       <button type="button" id="btn_delete">삭제</button>
       <button type="button" id="btn_list">목록</button>
