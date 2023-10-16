@@ -8,5 +8,8 @@ import com.gdu.app.dto.NoticeDto;
 
 @Mapper
 public interface NoticeMapper {
+  NoticeDto getNotice(int noticeNo);
   List<NoticeDto> getNoticeList();
+  int addNotice(NoticeDto noticeDto);
+  int modifyNotice(NoticeDto noticeDto);
 }

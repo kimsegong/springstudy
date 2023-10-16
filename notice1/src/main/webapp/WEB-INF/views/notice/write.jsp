@@ -13,7 +13,15 @@
 
   <div>
    <h1>공지 작성화면</h1>
-   
+   <form method="post" action="${contextPath}/notice/save.do">
+    <select name="gubun">
+      <option value="2">일반</option>
+      <option value="1">긴급</option>
+    </select>
+    <input type="text" name="title">
+    <input type="text" name="content">
+    <button>작성완료</button>
+   </form>
   </div>
 
 </body>
