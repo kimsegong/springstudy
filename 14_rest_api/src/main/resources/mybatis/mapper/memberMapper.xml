@@ -32,4 +32,36 @@
     SELECT COUNT(*)
       FROM MEMBER_T
   </select>
+  
+  <select id="getMember" parameterType="int" resultType="MemberDto">
+    SELECT MEMBER_NO, ID, NAME, GENDER, ADDRESS
+      FROM MEMBER_T
+     WHERE MEMBER_NO = #{memberNo}
+  </select>
+  
+  <update id="updateMember" parameterType="MemberDto">
+    UPDATE MEMBER_T
+       SET NAME = #{name}
+         , GENDER = #{gender}
+         , ADDRESS = #{address}
+     WHERE MEMBER_NO = #{memberNo}
+  </update>
+  
+  <delete id="deleteMember" parameterType="int">
+    DELETE
+      FROM MEMBER_T
+     WHERE MEMBER_NO = #{memberNo}
+  </delete>
+  
+  <delete id="deleteMembers" parameterType="List">
+    DELETE
+      FROM MEMBER_T
+    <where>
+      MEMBER_NO
+      <foreach collection="list" item="memberNo" open="IN(" close=")" separator=",">
+        #{memberNo}
+      </foreach>
+    </where>
+  </delete>
+
 </mapper>

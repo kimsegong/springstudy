@@ -26,7 +26,7 @@
   }
   function fnDeleteContact() {
 	$('#btn_delete').click(function(){
-	  if(confirm('연락처를 삭제하실?')){
+	  if(confirm('연락처를 삭제하실?'){
 		$('#frm_detail').attr('action', '${contextPath}/contact/delete.do');
 		$('#frm_detail').submit();
 	  }
