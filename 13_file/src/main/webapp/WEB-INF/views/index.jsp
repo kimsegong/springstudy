@@ -7,8 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+  .ck.ck-editor {
+    max-width: 800px;
+  }
+  .ck-editor__editable {
+    min-height: 400px;
+  }
+  .ck-content {
+    font-size: 12px;
+    color: orange;
+  }
+</style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 <script>
 
   $(function(){     
@@ -75,22 +87,38 @@
 
   function fnCkeditor(){
 	 
-	  CKEDITOR.replace('contents', {  // <textarea id="contents"></textarea>
-		  width: '1000px',
-		  height: '400px',
-		  filebrowserImageUploadUrl: '${contextPath}/ckeditor/upload.do'  // 이미지 업로드 경로
-	  });
-	  
-	  CKEDITOR.on('dialogDefinition', function(event){
-		  var dialogName = event.data.name;
-		  var dialogDefinition = event.data.definition;
-		  switch(dialogName){
-		  case 'image':
-			  dialogDefinition.removeContents('Link');
-			  dialogDefinition.removeContents('advanced');
-			  break;
-		  }
-	  });
+	  ClassicEditor
+	    .create(document.getElementById('contents'), {
+		    toolbar: {
+			    items: [
+		        'undo', 'redo',
+		        '|', 'heading',
+		        '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
+		        '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
+		        '|', 'link', 'uploadImage', 'blockQuote', 'codeBlock',
+		        '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent'
+  		    ],
+  		    shouldNotGroupWhenFull: false
+  	   },
+       heading: {
+         options: [
+           { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+           { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+           { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+           { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+           { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+           { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+           { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+         ]
+       },
+       ckfinder: {
+    	   // 업로드 경로
+    	   uploadUrl: '${contextPath}/ckeditor/upload.do'
+       }
+	   })
+	   .catch(err => {
+		   console.log(err)
+	   });
 	  
   }
   
@@ -128,10 +156,11 @@
   
   <div>
     <h3>CKEditor</h3>
-    <form>
+    <form method="post" action="${contextPath}/add.do">
       <div>
         <textarea id="contents"></textarea>
       </div>
+      <button type="submit">전송</button>
     </form>
   </div>
 
