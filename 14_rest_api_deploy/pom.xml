@@ -4,15 +4,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gdu</groupId>
 	<artifactId>app14</artifactId>
-	<name>14_rest_api</name>
+	<name>14_rest_api_deploy</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<properties>
+<properties>
     <java-version>11</java-version>
     <org.springframework-version>5.3.3</org.springframework-version>
     <org.aspectj-version>1.9.6</org.aspectj-version>
     <org.slf4j-version>2.0.7</org.slf4j-version>
-  </properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
    
   <dependencies>
   
@@ -152,6 +154,7 @@
   </dependencies>
   
   <build>
+    <finalName>${artifactId}</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-eclipse-plugin</artifactId>
@@ -170,7 +173,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>3.8.1</version>
         <configuration>
           <source>${java-version}</source>
           <target>${java-version}</target>
