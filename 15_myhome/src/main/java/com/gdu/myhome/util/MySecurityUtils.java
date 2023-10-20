@@ -2,6 +2,7 @@ package com.gdu.myhome.util;
 
 import java.security.MessageDigest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,4 +28,16 @@ public class MySecurityUtils {
     }
     return sb.toString();
   }
+  
+  // 인증코드 반환
+  public String getRandomString(int count, boolean letters, boolean numbers) {
+    return RandomStringUtils.random(count, letters, numbers);
+  }
+  
+  // 크로스 사이트 스크립팅(Cross Site Scripting) 방지
+  public String preventXSS(String source) {
+    return source.replace("<", "&lt;").replace(">", "&gt;");    
+  }
+  
+  
 }

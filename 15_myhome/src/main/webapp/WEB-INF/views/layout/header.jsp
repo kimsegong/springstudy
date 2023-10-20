@@ -25,7 +25,7 @@
       <c:if test="${sessionScope.user == null}">
         <ul>
           <li><a href="${contextPath}/user/login.form">로그인</a></li>
-          <li><a href="${contextPath}/user/join.form">회원가입</a></li>
+          <li><a href="${contextPath}/user/agree.form">회원가입</a></li>
         </ul>
       </c:if>
       <c:if test="${sessionScope.user != null}">

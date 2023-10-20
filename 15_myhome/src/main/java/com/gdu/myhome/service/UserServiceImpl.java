@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
       request.getSession().setAttribute("user", user);
       userMapper.insertAccess(email);
       try {
-        response.sendRedirect(request.getContextPath() + "/main.do");
+        response.sendRedirect(request.getParameter("referer"));
       } catch (Exception e) {
         e.printStackTrace();
       }
