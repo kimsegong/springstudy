@@ -8,8 +8,10 @@
   <select id="getUser" parameterType="Map" resultType="UserDto">
     SELECT USER_NO, EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, PW_MODIFIED_AT, JOINED_AT
       FROM USER_T
-     WHERE EMAIL = #{email}
-       AND PW = #{pw}
+     <where>
+      <if test="email != null">EMAIL = #{email}</if>
+      <if test="pw != null">AND PW = #{pw}</if>
+     </where>
   </select>
   
   <insert id="insertAccess" parameterType="String">
@@ -22,4 +24,15 @@
     )
   </insert>
   
+  <select id="getLeaveUser" parameterType="Map" resultType="LeaveUserDto">
+    SELECT EMAIL, JOINED_AT, LEAVED_AT
+      FROM LEAVE_USER_T
+     WHERE EMAIL = #{email}
+  </select>
+    
+  <select id="getInactiveUser" parameterType="Map" resultType="InactiveUserDto">
+    SELECT EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, PW_MODIFIED_AT, JOINED_AT, INACTIVED_AT
+      FROM INACTIVE_USER_T
+     WHERE EMAIL = #{email}
+  </select>
 </mapper>

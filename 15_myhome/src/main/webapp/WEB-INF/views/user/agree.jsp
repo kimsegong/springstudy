@@ -25,7 +25,7 @@
       <hr>
       
       <div>
-        <input type="checkbox" name="event" id="service" class="chk_each">
+        <input type="checkbox" name="service" id="service" class="chk_each">
         <label for="service">서비스 이용약관 동의(필수)</label>
       </div>
         <div>
