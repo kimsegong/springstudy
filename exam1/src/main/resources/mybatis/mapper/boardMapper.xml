@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gdu.exam.dao.BoardMapper">
+
+
+  <select id="getBoard" parameterType="int" resultType="BoardDto">
+    SELECT NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
+      FROM MVC_BOARD_T
+     WHERE NO = #{boardNo}
+  </select>
+
+  <insert id="addBoard" parameterType="BoardDto">
+    INSERT INTO MVC_BOARD_T (
+        NO
+      , AUTHOR
+      , TITLE
+      , CONTENT
+      , HIT
+      , IP
+      , POSTDATE
+    ) VALUES (
+        BOARD_SEQ.NEXTVAL
+      , #{author}
+      , #{title}
+      , #{content}
+      , #{hit}
+      , #{ip}
+      , #{postDate}
+    )
+  </insert>
+
+  <select id="getBoardList" resultType="BoardDto">
+    SELECT NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
+      FROM MVC_BOARD_T
+     ORDER BY NO DESC
+  </select>
+  
+</mapper>
