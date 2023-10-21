@@ -9,32 +9,57 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+<script>
+$(function(){    
+	fnDelete();
+	fnList();
+})
+function fnDelete(){
+	$('#btn_delete').click(function(){		
+      if(confirm('게시글을 삭제할까요?')){
+        location.href ='${contextPath}/board/delete.do?boardNo=${board.boardNo}';
+      }
+	})
+  }
+function fnList(){
+	$('#btn_list').click(function(){		
+      location.href = '${contextPath}/board/list.do';
+	})
+  }
+</script>
 <body>
 
-  
-
-  <div id="a">
+ <div>
     <h1>MvcBoard 게시글 상세보기화면</h1>
     <h3>${board.boardNo}번 게시글</h3>
-    <a>작성자 : ${board.author}</a>
-    <a>작성일 : ${board.postDate}</a>
-    <a>작성IP : ${board.ip}</a>
-    <a>조회수 : ${board.hit}</a>
-    <a>제목 : ${board.title}</a>
-    <a>내용 : ${board.content}</a>
+    <div>
+     <a>작성자 : ${board.author}</a>
+    </div>
+    <div>
+     <a>작성일 : ${board.postDate}</a>
+    </div>
+    <div>
+     <a>작성IP : ${board.ip}</a>
+    </div>
+    <div>
+     <a>조회수 : ${board.hit}</a>
+    </div>
+    <div>
+     <a>제목 : ${board.title}</a>
+    </div>
+    <div>
+     <a>내용 : ${board.content}</a>
+    </div>
     <div>
       <button type="button" id="btn_delete">삭제하기</button>
       <button type="button" id="btn_list">목록보기</button>
     </div>
   </div>
+
   
   
-    <script>
-      $('#gubun').val('${notice.gubun}');
-      $('#title').val('${notice.title}');
-      $('#content').val('${notice.content}');
-      $('#noticeNo').val('${notice.noticeNo}');
-    </script>
+  
+   
   
 </body>
 </html>

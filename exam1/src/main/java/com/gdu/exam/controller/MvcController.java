@@ -10,7 +10,7 @@ public class MvcController {
 
   @GetMapping(value="/")
   public String list() {
-    return "board/list";
+    return "redirect:/board/list.do";
   }
   
 }

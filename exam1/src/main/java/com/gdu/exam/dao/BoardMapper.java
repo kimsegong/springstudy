@@ -8,7 +8,9 @@ import com.gdu.exam.dto.BoardDto;
 
 @Mapper
 public interface BoardMapper {
-	public List<BoardDto> getBoardList();
-    public BoardDto getBoard(int no);
+    public BoardDto getBoard(int boardNo);
 	public int addBoard(BoardDto boardDto);
+	public List<BoardDto> getBoardList();
+	public int delete(int boardNo);
+
 }

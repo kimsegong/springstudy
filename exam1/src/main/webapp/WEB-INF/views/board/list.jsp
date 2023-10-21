@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
-
   var addResult = '${addResult}';  
   if(addResult !== ''){
 	  if(addResult === '1'){
@@ -18,7 +17,16 @@
 		  alert('게시글이 등록되지 않았습니다.');
 	  }
   }
-
+  var deleteResult = '${deleteResult}';
+  if(deleteResult != '') {
+    if(deleteResult == '1'){
+      alert('게시글이 삭제되었습니다.');
+    } else {
+      alert('게시글이 삭제되지 않았습니다.');
+    }
+      
+  }
+  
 </script>
 </head>
 <body>
@@ -41,13 +49,13 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach items="${boardList}" var="c">
+        <c:forEach items="${boardList}" var="board">
           <tr>
-            <td>${c.no}</td>
-            <td><a href="${contextPath}/board/detail.do?boardNo=${c.no}">${c.title}</a></td>
-            <td>${c.author}</td>
-            <td>${c.postDate}</td>
-            <td>${c.hit}</td>
+            <td>${board.boardNo}</td>
+            <td><a href="${contextPath}/board/detail.do?boardNo=${board.boardNo}">${board.title}</a></td>
+            <td>${board.author}</td>
+            <td>${board.postDate}</td>
+            <td>${board.hit}</td>
           </tr>
         </c:forEach>
       </tbody>

@@ -7,35 +7,32 @@
 
 
   <select id="getBoard" parameterType="int" resultType="BoardDto">
-    SELECT NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
+    SELECT BOARD_NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
       FROM MVC_BOARD_T
-     WHERE NO = #{boardNo}
+     WHERE BOARD_NO = #{boardNo}
   </select>
 
   <insert id="addBoard" parameterType="BoardDto">
     INSERT INTO MVC_BOARD_T (
-        NO
+        BOARD_NO
       , AUTHOR
       , TITLE
       , CONTENT
-      , HIT
-      , IP
-      , POSTDATE
     ) VALUES (
-        BOARD_SEQ.NEXTVAL
+        MVC_BOARD_SEQ.NEXTVAL
       , #{author}
       , #{title}
       , #{content}
-      , #{hit}
-      , #{ip}
-      , #{postDate}
     )
   </insert>
 
   <select id="getBoardList" resultType="BoardDto">
-    SELECT NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
+    SELECT BOARD_NO, AUTHOR, TITLE, HIT, POSTDATE
       FROM MVC_BOARD_T
-     ORDER BY NO DESC
+     ORDER BY BOARD_NO DESC
   </select>
   
+   <delete id="delete" parameterType="int">
+  	 DELETE FROM MVC_BOARD_T WHERE BOARD_NO = #{boardNo}
+   </delete>
 </mapper>
