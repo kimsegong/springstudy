@@ -23,7 +23,7 @@
     <div class="logo"></div>
     <div class="login_wrap">
       <c:if test="${sessionScope.user == null}">
-        <ul>
+        <ul class="ul_menu right_wrap">
           <li><a href="${contextPath}/user/login.form">로그인</a></li>
           <li><a href="${contextPath}/user/agree.form">회원가입</a></li>
         </ul>
@@ -38,7 +38,7 @@
         <li><a href="${contextPath}">댓글형게시판</a></li>
         <li><a href="${contextPath}">계층게시판</a></li>
         <li><a href="${contextPath}">첨부게시판</a></li>
-        <li><a href="${contextPath}">MY</a></li>
+        <li><a href="${contextPath}/user/mypage.form">MY</a></li>
       </ul>
     </div>
   </div>

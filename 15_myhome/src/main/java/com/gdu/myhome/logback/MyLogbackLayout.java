@@ -14,16 +14,22 @@ public class MyLogbackLayout extends LayoutBase<ILoggingEvent> {
     
     sb.append("[");
     sb.append(new SimpleDateFormat("HH:mm:ss").format(event.getTimeStamp()));
-    sb.append("] ");
-    sb.append(String.format("%-5s", event.getLevel()));
-    sb.append(":");
+    sb.append("]");
+    
     String loggerName = event.getLoggerName();
-    sb.append(loggerName);
+
+    if(!loggerName.endsWith("RequestCheckAop")) {      
+      sb.append(String.format("%-5s", event.getLevel()));
+      sb.append(":");
+      sb.append(loggerName);
+    }
+    
     if(loggerName.equals("jdbc.sqlonly")) {
       sb.append("\n    ");
     } else {
       sb.append(" - ");
     }
+    
     sb.append(event.getFormattedMessage());
     sb.append("\n");
     

@@ -48,8 +48,8 @@ public class BoardController {
      return "board/detail";  
    }
    @GetMapping("/board/delete.do")
-   public String delete(@RequestParam int boardNo, RedirectAttributes redirectAttributes) {
-       int deleteResult = boardService.delete(boardNo);
+   public String delete(@RequestParam int no, RedirectAttributes redirectAttributes) {
+       int deleteResult = boardService.delete(no);
        redirectAttributes.addFlashAttribute("deleteResult", deleteResult);
        return "redirect:/board/list.do";
    }

@@ -17,7 +17,7 @@ $(function(){
 function fnDelete(){
 	$('#btn_delete').click(function(){		
       if(confirm('게시글을 삭제할까요?')){
-        location.href ='${contextPath}/board/delete.do?boardNo=${board.boardNo}';
+        location.href ='${contextPath}/board/delete.do?no=${board.no}';
       }
 	})
   }
@@ -31,7 +31,7 @@ function fnList(){
 
  <div>
     <h1>MvcBoard 게시글 상세보기화면</h1>
-    <h3>${board.boardNo}번 게시글</h3>
+    <h3>${board.no}번 게시글</h3>
     <div>
      <a>작성자 : ${board.author}</a>
     </div>

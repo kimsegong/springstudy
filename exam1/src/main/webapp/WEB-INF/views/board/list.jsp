@@ -51,8 +51,8 @@
       <tbody>
         <c:forEach items="${boardList}" var="board">
           <tr>
-            <td>${board.boardNo}</td>
-            <td><a href="${contextPath}/board/detail.do?boardNo=${board.boardNo}">${board.title}</a></td>
+            <td>${board.no}</td>
+            <td><a href="${contextPath}/board/detail.do?boardNo=${board.no}">${board.title}</a></td>
             <td>${board.author}</td>
             <td>${board.postDate}</td>
             <td>${board.hit}</td>

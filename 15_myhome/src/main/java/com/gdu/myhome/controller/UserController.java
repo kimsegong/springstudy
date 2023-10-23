@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class UserController {
   public String loginForm(HttpServletRequest request, Model model) {
     // referer : 이전 주소가 저장되는 요청 Header 값
     String referer = request.getHeader("referer");
-    model.addAttribute("referer" ,referer == null ? request.getContextPath() + "/main.do" : referer);
+    model.addAttribute("referer", referer == null ? request.getContextPath() + "/main.do" : referer);
     return "user/login";
   }
   
@@ -41,31 +42,69 @@ public class UserController {
   public void logout(HttpServletRequest request, HttpServletResponse response) {
     userService.logout(request, response);
   }
+  
   @GetMapping("/agree.form")
   public String agreeForm() {
     return "user/agree";
   }
+  
   @GetMapping("/join.form")
-  public String joinForm(@RequestParam (value="service", required = false, defaultValue = "off") String service
-                        , @RequestParam (value="event", required = false, defaultValue = "off") String event
-                        , Model model) {
+  public String joinForm(@RequestParam(value="service", required=false, defaultValue="off") String service
+                       , @RequestParam(value="event", required=false, defaultValue="off") String event
+                       , Model model) {
     String rtn = null;
-   if(service.equals("off")) {
-     rtn = "redirect:/main.do";
-   } else {
-     // model.addAttribute("service", service);
-     model.addAttribute("event", event);  // user 폴더 join.jsp로 전달하는 event는 "on" 또는 "off" 값을 가진다.
-     rtn = "user/join";  
-   }
-   return rtn;
+    if(service.equals("off")) {
+      rtn = "redirect:/main.do";
+    } else {
+      model.addAttribute("event", event);  // user 폴더 join.jsp로 전달하는 event는 "on" 또는 "off" 값을 가진다.
+      rtn = "user/join";
+    }
+    return rtn;
   }
-  @GetMapping(value="/checkEmail.do", produces = "application/json")
+  
+  @GetMapping(value="/checkEmail.do", produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Map<String, Object>> checkEmail(@RequestParam String email) {
     return userService.checkEmail(email);
   }
-  @GetMapping(value="/sendCode.do", produces = "application/json")
+  
+  @GetMapping(value="/sendCode.do", produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Map<String, Object>> sendCode(@RequestParam String email) {
-   return userService.sendCode(email); 
+    return userService.sendCode(email);
   }
+  
+  @PostMapping("/join.do")
+  public void join(HttpServletRequest request, HttpServletResponse response) {
+    userService.join(request, response);
+  }
+  
+  @GetMapping("/mypage.form")
+  public String mypageForm() {
+    return "user/mypage";
+  }
+  
+  @PostMapping(value="/modify.do", produces=MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Map<String, Object>> modify(HttpServletRequest request) {
+    return userService.modify(request);
+  }
+  
+  @GetMapping("/modifyPw.form")
+  public String modifyPwForm() {
+    return "user/pw";
+  }
+  
+  @PostMapping("/modifyPw.do")
+  public void modifyPw(HttpServletRequest request, HttpServletResponse response) {
+    userService.modifyPw(request, response);
+  }
+  @PostMapping("/leave.do")
+  public void leave(HttpServletRequest request, HttpServletResponse response) {
+    userService.leave(request, response);
+  }
+  
+  @GetMapping("/findId.do")
+  public ResponseEntity<Map<String, Object>> modify(HttpServletRequest request, HttpServletResponse response){
+    return userService.selectId(request, response);
+  }
+  
   
 }

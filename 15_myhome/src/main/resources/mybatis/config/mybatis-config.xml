@@ -9,11 +9,11 @@
   <settings>
     <setting name="mapUnderscoreToCamelCase" value="true"/>
   </settings>
-
+  
   <typeAliases>
     <typeAlias alias="UserDto" type="com.gdu.myhome.dto.UserDto"/>
     <typeAlias alias="LeaveUserDto" type="com.gdu.myhome.dto.LeaveUserDto"/>
     <typeAlias alias="InactiveUserDto" type="com.gdu.myhome.dto.InactiveUserDto"/>
   </typeAliases>
-  
+
 </configuration>

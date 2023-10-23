@@ -7,14 +7,14 @@
 
 
   <select id="getBoard" parameterType="int" resultType="BoardDto">
-    SELECT BOARD_NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
+    SELECT NO, AUTHOR, TITLE, CONTENT, HIT, IP, POSTDATE
       FROM MVC_BOARD_T
-     WHERE BOARD_NO = #{boardNo}
+     WHERE NO = #{no}
   </select>
 
   <insert id="addBoard" parameterType="BoardDto">
     INSERT INTO MVC_BOARD_T (
-        BOARD_NO
+        NO
       , AUTHOR
       , TITLE
       , CONTENT
@@ -27,12 +27,12 @@
   </insert>
 
   <select id="getBoardList" resultType="BoardDto">
-    SELECT BOARD_NO, AUTHOR, TITLE, HIT, POSTDATE
+    SELECT NO, AUTHOR, TITLE, HIT, POSTDATE
       FROM MVC_BOARD_T
-     ORDER BY BOARD_NO DESC
+     ORDER BY NO DESC
   </select>
   
    <delete id="delete" parameterType="int">
-  	 DELETE FROM MVC_BOARD_T WHERE BOARD_NO = #{boardNo}
+  	 DELETE FROM MVC_BOARD_T WHERE NO = #{no}
    </delete>
 </mapper>

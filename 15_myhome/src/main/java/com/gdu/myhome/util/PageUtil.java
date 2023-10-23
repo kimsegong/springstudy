@@ -4,9 +4,10 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@Component
+
 @NoArgsConstructor
 @Data
+@Component
 public class PageUtil {
 
   private int page;     // 현재 페이지 번호(요청 파라미터로 받는다.)
@@ -81,7 +82,7 @@ public class PageUtil {
     return sb.toString();
     
   }
-  
+
   public String getAjaxPaging() {
     
     StringBuilder sb = new StringBuilder();
@@ -100,7 +101,7 @@ public class PageUtil {
       if(p == page) {
         sb.append("<a>" + p + "</a>");
       } else {
-        sb.append("<a href=\"javascript:fnAjaxPaging(" +p+ ")\">"+p+"</a>");
+        sb.append("<a href=\"javascript:fnAjaxPaging(" + p + ")\">" + p + "</a>");
       }
     }
     

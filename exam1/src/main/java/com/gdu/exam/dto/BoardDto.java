@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class BoardDto {
-  private int boardNo;
+  private int no;
   private String author;
   private String title;
   private String content;

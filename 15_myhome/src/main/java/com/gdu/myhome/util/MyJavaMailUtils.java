@@ -16,18 +16,17 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /*
- * google 계정으로 이메일 보내기 위해서 앱 비밀번호를 생성해 둬야한다.
+ * google 계정으로 이메일 보내기 위해서 앱 비밀번호를 생성해 둬야 한다.
  * 
  * 1. 구글에 로그인한다.
- * 2. [계정] - [보안] 
- * 3. [2단계 인증] - [앱 비밀번호] - [App name 생성] : myhome 입력
+ * 2. [계정] - [보안]
+ * 3. [2단계 인증] - [앱 비밀번호] - [App name] : myhome 입력
  * 4. 생성된 비밀번호를 복사해서 email.properties 파일에 붙여넣기한다.
  */
 
-
 @PropertySource(value="classpath:email.properties")
 @Component
-public class MyjavaMailUtils {
+public class MyJavaMailUtils {
 
   @Autowired
   private Environment env;
@@ -39,7 +38,7 @@ public class MyjavaMailUtils {
       // Properties 객체 생성 (이메일 보내는 호스트 정보)
       Properties properties = new Properties();
       properties.put("mail.smtp.host", env.getProperty("spring.mail.host"));
-      properties.put("mail.smtp.port", env.getProperty("spring.mail.port"));
+      properties.put("mail.smtp.port", env.getProperty("spring.mail.host"));
       properties.put("mail.smtp.auth", env.getProperty("spring.mail.properties.mail.smtp.auth"));
       properties.put("mail.smtp.starttls.enable", env.getProperty("spring.mail.properties.mail.smtp.starttls.enable"));
       
@@ -64,8 +63,7 @@ public class MyjavaMailUtils {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
   }
-  
-  
   
 }
