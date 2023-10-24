@@ -11,9 +11,10 @@ public class MvcController {
   public String index() {
     return "index";
   }
+  
   @RequestMapping(value="/shop.go", method=RequestMethod.GET)
   public String shop() {
     return "shop";
   }
-
+  
 }

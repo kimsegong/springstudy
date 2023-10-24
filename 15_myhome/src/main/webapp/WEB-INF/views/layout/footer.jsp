@@ -4,7 +4,7 @@
 </div>
 
   <div class="footer_wrap">
-    Copyright 콩이엄마시다
+    Copyright 민경태
   </div>
 
 </body>

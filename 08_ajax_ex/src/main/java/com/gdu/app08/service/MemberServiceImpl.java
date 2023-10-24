@@ -11,16 +11,24 @@ import com.gdu.app08.dto.MemberDto;
 
 import lombok.RequiredArgsConstructor;
 
-
-@RequiredArgsConstructor  
+@RequiredArgsConstructor  // 생성자 주입(@Autowired)을 통해서 private final MemberDao memberDao;에 Bean을 주입한다. 
 @Service
 public class MemberServiceImpl implements MemberService {
 
   private final MemberDao memberDao;
   
+  // @RequiredArgsConstructor와 동일한 코드는 아래와 같다.
+  /*
+  @Autowired
+  public MemberServiceImpl(MemberDao memberDao) {
+    super();
+    this.memberDao = memberDao;
+  }
+  */
+  
   @Override
   public Map<String, Object> getBmiInfo(int memberNo) {
- 
+    
     MemberDto memberDto = memberDao.getMemberByNo(memberNo);
     
     double bmi = memberDto.getWeight() / ((Math.pow(memberDto.getHeight(), 2)) / 10000);
@@ -36,18 +44,21 @@ public class MemberServiceImpl implements MemberService {
     }
     
     return Map.of("bmi", bmi, "state", state, "name", memberDto.getName());
+    
   }
+  
   @Override
   public byte[] getProfileImage(int memberNo) {
     byte[] b = null;
     try {
-      String path = "D:\\GDJ69\\assets\\image";
-      String filename= "flower" + memberNo + ".jpg";
+      String path = "C:\\GDJ69\\assets\\image";
+      String filename = "flower" + memberNo + ".jpg";
       File file = new File(path, filename);
       b = FileCopyUtils.copyToByteArray(file);
-    } catch (Exception e) {
-     e.printStackTrace();
-    }   
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
     return b;
   }
+  
 }

@@ -22,11 +22,11 @@ public class MemberController {
   public Map<String, Object> bmiInfo(@RequestParam("memberNo") int memberNo) {
     return memberService.getBmiInfo(memberNo);
   }
+  
   @ResponseBody
   @GetMapping(value="/member/profile.display", produces="application/octet-stream")
-  public byte[] profile(@RequestParam("memberNo") int memberNo){
-     return memberService.getProfileImage(memberNo);                             
-    
+  public byte[] profile(@RequestParam("memberNo") int memberNo) {
+    return memberService.getProfileImage(memberNo);
   }
   
 }

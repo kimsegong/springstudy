@@ -10,11 +10,10 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script>
   $(function(){
-	fnMemberInfo();
-	fnImage();
+    fnMemberInfo();
   })
   function fnMemberInfo(){
-	$('#btn_bmi').click(function(){
+    $('#btn_bmi').click(function(){
       $.ajax({
         type: 'get',
         url: '${contextPath}/member/health.check',
@@ -25,17 +24,16 @@
           fnProfile();
         }
       })
-	})
+    })
   }
   function fnBmi(resData){
-	$('#bmi_info').empty();
+    $('#bmi_info').empty();
     $('#bmi_info').append('<ul><li>' + resData.name + '</li><li>' + resData.bmi + '</li><li>' + resData.state + '</li></ul>');
   }
   function fnProfile(){
-	$('#profile').empty();
-	$('#profile').append('<img src="${contextPath}/member/profile.display?memberNo='+ $('#memberNo').val() +'" width="192px">');
+    $('#profile').empty();
+    $('#profile').append('<img src="${contextPath}/member/profile.display?memberNo=' + $('#memberNo').val() + '" width="192px">');
   }
-  
 </script>
 </head>
 <body>
@@ -52,15 +50,15 @@
   <hr>
   
   <div>
-  <div id="profile"></div>
-  <div id="bmi_info"></div>
+    <div id="profile"></div>
+    <div id="bmi_info"></div>
   </div>
   
   <hr>
   
   <div>
     <a href="${contextPath}/shop.go">쇼핑하러가기</a>
-  </div>  
+  </div>
 
 </body>
 </html>
