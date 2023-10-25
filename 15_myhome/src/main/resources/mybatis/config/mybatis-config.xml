@@ -14,6 +14,7 @@
     <typeAlias alias="UserDto" type="com.gdu.myhome.dto.UserDto"/>
     <typeAlias alias="LeaveUserDto" type="com.gdu.myhome.dto.LeaveUserDto"/>
     <typeAlias alias="InactiveUserDto" type="com.gdu.myhome.dto.InactiveUserDto"/>
+    <typeAlias alias="FreeDto" type="com.gdu.myhome.dto.FreeDto"/>
   </typeAliases>
 
 </configuration>

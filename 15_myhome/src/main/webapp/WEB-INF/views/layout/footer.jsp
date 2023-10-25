@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-</div>
+
 
   <div class="footer_wrap">
-    Copyright 민경태
+    Copyright 콩이엄마
   </div>
 
 </body>

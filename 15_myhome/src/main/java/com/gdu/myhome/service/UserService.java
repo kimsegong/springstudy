@@ -15,6 +15,9 @@ public interface UserService {
   public String getNaverLoginURL(HttpServletRequest request) throws Exception;
   public String getNaverLoginAccessToken(HttpServletRequest request) throws Exception;
   public UserDto getNaverProfile(String accessToken) throws Exception;
+  public UserDto getUser(String email);
+  public void naverJoin(HttpServletRequest request, HttpServletResponse response);
+  public void naverLogin(HttpServletRequest request, HttpServletResponse response, UserDto naverProfile) throws Exception;
   public void logout(HttpServletRequest request, HttpServletResponse response);
   public ResponseEntity<Map<String, Object>> checkEmail(String email);
   public ResponseEntity<Map<String, Object>> sendCode(String email);

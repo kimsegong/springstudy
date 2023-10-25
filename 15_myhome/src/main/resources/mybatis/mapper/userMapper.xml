@@ -6,7 +6,7 @@
 <mapper namespace="com.gdu.myhome.dao.UserMapper">
 
   <select id="getUser" parameterType="Map" resultType="UserDto">
-    SELECT USER_NO, EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, PW_MODIFIED_AT, JOINED_AT
+    SELECT USER_NO, EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, STATE, PW_MODIFIED_AT, JOINED_AT
       FROM USER_T
     <where>
       <if test="email != null">EMAIL = #{email}</if>
@@ -53,6 +53,7 @@
       , JIBUN_ADDRESS
       , DETAIL_ADDRESS
       , AGREE
+      , STATE
       , PW_MODIFIED_AT
       , JOINED_AT
     ) VALUES (
@@ -67,6 +68,7 @@
       , #{jibunAddress}
       , #{detailAddress}
       , #{agree}
+      , 0
       , SYSDATE
       , SYSDATE
     )
@@ -112,7 +114,7 @@
 
   <insert id="insertInactiveUser">
     INSERT INTO INACTIVE_USER_T (
-      SELECT USER_NO, U.EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, PW_MODIFIED_AT, JOINED_AT, SYSDATE
+      SELECT USER_NO, U.EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, STATE, PW_MODIFIED_AT, JOINED_AT, SYSDATE
         FROM USER_T U LEFT OUTER JOIN ACCESS_T A
           ON U.EMAIL = A.EMAIL
        WHERE MONTHS_BETWEEN(SYSDATE, LOGIN_AT) >= 12
@@ -132,7 +134,7 @@
 
   <insert id="insertActiveUser" parameterType="String">  
     INSERT INTO USER_T (
-      SELECT USER_NO, EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, PW_MODIFIED_AT, JOINED_AT
+      SELECT USER_NO, EMAIL, PW, NAME, GENDER, MOBILE, POSTCODE, ROAD_ADDRESS, JIBUN_ADDRESS, DETAIL_ADDRESS, AGREE, STATE, PW_MODIFIED_AT, JOINED_AT
         FROM INACTIVE_USER_T
        WHERE EMAIL = #{email}
     )
@@ -144,4 +146,30 @@
      WHERE EMAIL = #{email}  
   </delete>
 
+  <insert id="insertNaverUser" parameterType="UserDto">
+    INSERT INTO USER_T (
+        USER_NO
+      , EMAIL
+      , NAME
+      , GENDER
+      , MOBILE
+      , AGREE
+      , STATE
+      , PW_MODIFIED_AT
+      , JOINED_AT
+    ) VALUES (
+      USER_SEQ.NEXTVAL
+      , #{email}
+      , #{name}
+      , #{gender}
+      , #{mobile}
+      , #{agree}
+      , 1
+      , SYSDATE
+      , SYSDATE
+    )
+  </insert>
+  
+  
+  
 </mapper>

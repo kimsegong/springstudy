@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Component
-public class PageUtil {
+public class MyPageUtils {
 
   private int page;     // 현재 페이지 번호(요청 파라미터로 받는다.)
   private int total;    // 전체 항목의 개수(DB에서 구한 뒤 받는다.)
@@ -17,7 +17,7 @@ public class PageUtil {
   private int end;      // 한 페이지에 표시되는 항목의 종료 번호(계산한다.)
   
   private int totalPage;        // 전체 페이지의 개수(계산한다.)
-  private int pagePerBlock = 2; // 한 블록에 표시되는 페이지의 개수(임의로 정한다.)
+  private int pagePerBlock=10;  // 한 블록에 표시되는 페이지의 개수(임의로 정한다.)
   private int beginPage;        // 한 블록에 표시되는 페이지의 시작 번호(계산한다.)
   private int endPage;          // 한 블록에 표시되는 페이지의 종료 번호(계산한다.)
   

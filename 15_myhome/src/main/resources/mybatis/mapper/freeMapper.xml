@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gdu.myhome.dao.FreeMapper">
+
+  <insert id="insertFree" parameterType="FreeDto">
+    INSERT INTO FREE_T (
+        FREE_NO
+      , EMAIL
+      , CONTENTS
+      , CREATED_AT
+      , STATUS
+      , DEPTH
+      , GROUP_NO
+      , GROUP_ORDER
+    ) VALUES (
+        FREE_SEQ.NEXTVAL
+      , #{email}
+      , #{contents}
+      , SYSTIMESTAMP
+      , 1
+      , 0
+      , FREE_SEQ.CURRVAL
+      , 0
+    )
+  </insert>
+
+  <select id="getFreeCount" resultType="int">
+    SELECT COUNT(*)
+      FROM FREE_T
+  </select>
+
+  <select id="getFreeList" parameterType="Map" resultType="FreeDto">
+    SELECT FREE_NO, EMAIL, CONTENTS, CREATED_AT, STATUS, DEPTH, GROUP_NO, GROUP_ORDER
+      FROM (SELECT ROW_NUMBER() OVER(ORDER BY FREE_NO DESC) AS RN, FREE_NO, EMAIL, CONTENTS, CREATED_AT, STATUS, DEPTH, GROUP_NO, GROUP_ORDER
+              FROM FREE_T)
+     WHERE RN BETWEEN #{begin} AND #{end}
+  </select>
+
+</mapper>
