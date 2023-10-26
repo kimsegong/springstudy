@@ -14,21 +14,31 @@
   .login_form_wrap {
     width: 300px;
   }
+  #email1 {
+   margin-bottom: 20px;
+  }
+  
+  #name1 {
+   margin-top:5px;
+  }
+  
 </style>
 
   <div class="login_form_wrap center_wrap">
     <form method="post" action="${contextPath}/user/login.do">
-      <div>
-        <label for="email">아이디</label>
-        <input type="text" name="email" id="email" placeholder="admin@gmail.com">
+        <div class="input-group flex-nowrap" id="email1">
+          <label for="email"></label>
+          <span class="input-group-text" id="addon-wrapping">아이디</span>
+          <input type="text"  name="email" id="email" class="form-control" placeholder="admin@gmail.com"aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+      <div class="input-group flex-nowrap">
+        <label for="pw"></label>
+        <span class="input-group-text" id="addon-wrapping">비밀번호</span>
+        <input type="password" name="pw" id="pw"  class="form-control" placeholder="●●●●●●" aria-label="Username" aria-describedby="addon-wrapping">
       </div>
-      <div>
-        <label for="pw">비밀번호</label>
-        <input type="password" name="pw" id="pw" placeholder="●●●●●●">
-      </div>
-      <div>
+      <div id="name1">
         <input type="hidden" name="referer" value="${referer}">
-        <button type="submit">로그인</button>
+        <button type="submit" class="btn btn-success">로그인</button>
       </div>
     </form>
     <ul class="ul_menu center_wrap">
