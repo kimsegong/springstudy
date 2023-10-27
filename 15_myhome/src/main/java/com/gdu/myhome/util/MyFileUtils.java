@@ -29,4 +29,11 @@ public class MyFileUtils {
     }
     return UUID.randomUUID().toString().replace("-", "") + "." + extName;
   }
+   
+   // 블로그 이미지가 저장된 어제 경로를 반환
+   public String getBlogImagePathInYesterday() {
+     LocalDate date = LocalDate.now();
+     date = date.minusDays(1);
+     return "/blog/" + DateTimeFormatter.ofPattern("yyyy/MM/dd").format(date);
+   }
 }
