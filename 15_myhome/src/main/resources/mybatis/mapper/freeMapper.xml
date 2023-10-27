@@ -86,7 +86,8 @@
   <select id="getSearchCount" parameterType="Map" resultType="int">
     SELECT COUNT(*)
       FROM FREE_T
-     WHERE ${column} LIKE '%' || #{query} || '%'
+     WHERE STATUS = 1
+       AND ${column} LIKE '%' || #{query} || '%'
   </select>
   
   <!-- 검색 결과 목록 -->
@@ -94,7 +95,8 @@
     SELECT FREE_NO, EMAIL, CONTENTS, CREATED_AT, STATUS, DEPTH, GROUP_NO, GROUP_ORDER
       FROM (SELECT ROW_NUMBER() OVER(ORDER BY GROUP_NO DESC, GROUP_ORDER ASC) AS RN, FREE_NO, EMAIL, CONTENTS, CREATED_AT, STATUS, DEPTH, GROUP_NO, GROUP_ORDER
               FROM FREE_T
-             WHERE ${column} LIKE '%' || #{query} || '%')
+             WHERE STATUS = 1
+               AND ${column} LIKE '%' || #{query} || '%')
      WHERE RN BETWEEN #{begin} AND #{end}
   </select>  
   

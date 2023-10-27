@@ -25,7 +25,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @MapperScan(basePackages="com.gdu.myhome.dao")  // @Mapper를 찾을 패키지
 @PropertySource(value="classpath:application.properties")
 @Configuration
-public class AppConfig {
+public class DBConfig {
 
   @Autowired
   private Environment env;
