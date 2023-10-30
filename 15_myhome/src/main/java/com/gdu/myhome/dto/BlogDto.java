@@ -13,9 +13,10 @@ public class BlogDto {
   private int blogNo;
   private String title;
   private String contents;
-  private int userNo;
   private int hit;
   private String ip;  
   private String createdAt;
   private String modifiedAt;
+  private String email;
+  private UserDto userDto;  // private int userNo;
 }

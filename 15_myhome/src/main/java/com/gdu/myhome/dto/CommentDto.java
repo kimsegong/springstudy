@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 public class CommentDto {
   private int commentNo;
   private String contents;
-  private int usetNo;
   private int blogNo;
   private String createdAt;
   private int status;
   private int depth;
   private int groupNo;
+  private UserDto userDto; // private int userNo;
 }
