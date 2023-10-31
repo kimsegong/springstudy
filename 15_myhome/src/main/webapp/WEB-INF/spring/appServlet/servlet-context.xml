@@ -31,6 +31,8 @@
       <mapping path="/user/modifyPw.form"/>
       <mapping path="/free/write.form"/>
       <mapping path="/blog/write.form"/>
+      <mapping path="/blog/edit.form"/>
+      <mapping path="/blog/remove.do"/>
       <beans:bean class="com.gdu.myhome.intercept.RequiredLoginInterceptor" />
     </interceptor>
     
