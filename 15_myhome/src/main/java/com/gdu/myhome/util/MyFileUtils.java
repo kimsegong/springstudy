@@ -9,12 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyFileUtils {
 
-  // 파일이 저장될 경로 반환하기
-  public String getBlogImagePath() {
-    /*    /storage/yyyy/MM/dd    */ 
-    LocalDate today = LocalDate.now();
-    return "/blog/" + DateTimeFormatter.ofPattern("yyyy/MM/dd").format(today);
- }
+    // 파일이 저장될 경로 반환하기
+    public String getBlogImagePath() {
+      /*    /storage/yyyy/MM/dd    */ 
+      LocalDate today = LocalDate.now();
+      return "/blog/" + DateTimeFormatter.ofPattern("yyyy/MM/dd").format(today);
+   }
+  
+    // 업로드 게시판 작성시 첨부한 파일이 저장될 경로 반환하기
+    public String getUploadPath() {
+      LocalDate today = LocalDate.now();
+      return "/upload/" + DateTimeFormatter.ofPattern("yyyy/MM/dd").format(today);
+   }
+  
    // 파일이 저장될 이름 반환하기
    public String getFilesystemName(String originalFileName) {
     

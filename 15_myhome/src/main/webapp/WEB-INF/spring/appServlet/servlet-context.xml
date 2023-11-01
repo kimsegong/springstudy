@@ -33,6 +33,7 @@
       <mapping path="/blog/write.form"/>
       <mapping path="/blog/edit.form"/>
       <mapping path="/blog/remove.do"/>
+      <mapping path="/upload/write.form"/>
       <beans:bean class="com.gdu.myhome.intercept.RequiredLoginInterceptor" />
     </interceptor>
     
