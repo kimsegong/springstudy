@@ -3,6 +3,10 @@ package com.gdu.myhome.service;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -98,16 +102,23 @@ public class UploadServiceImpl implements UploadService {
     
   }
   
+  @Override
+  public Map<String, Object> getUploadList(HttpServletRequest request) {
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+    Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
+    int page = Integer.parseInt(opt.orElse("1"));
+    int total = uploadMapper.getUploadCount();
+    int display = 9;
+    
+    myPageUtils.setPaging(page, total, display);
+    
+    Map<String, Object> map = Map.of("begin", myPageUtils.getBegin()
+                                   , "end", myPageUtils.getEnd());
+    
+    List<UploadDto> uploadList = uploadMapper.getUploadList(map);
+    
+    return Map.of("uploadList", uploadList
+                , "totalPage", myPageUtils.getTotalPage());
+  }
   
 }
