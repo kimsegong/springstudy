@@ -34,6 +34,8 @@
       <c:if test="${sessionScope.user.userNo == blog.userDto.userNo}">
         <form id="frm_btn" method="post">
           <input type="hidden" name="blogNo" value="${blog.blogNo}">
+          <input type="hidden" name="title" value="${blog.title}">
+          <input type="hidden" name="contents" value='${blog.contents}'>
           <button type="button" id="btn_edit">편집</button>
           <button type="button" id="btn_remove">삭제</button>
         </form>
