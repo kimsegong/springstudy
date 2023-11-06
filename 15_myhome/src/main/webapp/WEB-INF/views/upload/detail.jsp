@@ -9,9 +9,10 @@
 <jsp:include page="../layout/header.jsp">
   <jsp:param value="${upload.uploadNo}번 게시글" name="title"/>
 </jsp:include>
+
 <style>
   .attach {
-  cursor: pointer;
+    cursor: pointer;
   }
 </style>
 
@@ -25,11 +26,13 @@
   <div>내용</div>
   <div>${upload.contents}</div>
   <div>
-    <form id="frm_btn" method="post">
-      <input type="hidden" name="uploadNo" value="${upload.uploadNo}">
-      <button type="button" id="btn_edit">편집</button>
-      <button type="button" id="btn_remove">삭제</button>
-    </form>
+    <c:if test="${sessionScope.user.userNo == upload.userDto.userNo}">
+      <form id="frm_btn">
+        <input type="hidden" name="uploadNo" value="${upload.uploadNo}">
+        <button type="button" id="btn_edit">편집</button>
+        <button type="button" id="btn_remove">삭제</button>
+      </form>
+    </c:if>
   </div>
   
   <hr>
@@ -59,18 +62,39 @@
   
 <script>
 
-const fnDownload = () => {
-	$('.attach').click(function() {
-		if (confirm('다운로드 할까요?')) {
-			location.href = '${contextPath}/upload/download.do?attachNo=' +  $(this).data('attach_no');
-		}
-	})
-}
+  var frmBtn = $('#frm_btn');
 
+  const fnEdit = () => {
+	  $('#btn_edit').click(() => {
+		  frmBtn.attr('action', '${contextPath}/upload/edit.form');
+		  frmBtn.attr('method', 'get');
+		  frmBtn.submit();
+	  })
+  }
+
+
+  const fnDownload = () => {
+	  $('.attach').click(function(){
+		  if(confirm('다운로드 할까요?')){
+			  location.href = '${contextPath}/upload/download.do?attachNo=' + $(this).data('attach_no');
+		  }
+	  })
+  }
   
+  const fnModifyResult = () => {
+	  let modifyResult = '${modifyResult}';
+	  if(modifyResult !== ''){
+		  if(modifyResult === '1'){
+			  alert('게시글이 수정되었습니다.');
+		  } else {
+			  alert('게시글이 수정되지 않았습니다.');
+		  }
+	  }
+  }
   
-  
+  fnEdit();
   fnDownload();
+  fnModifyResult();
   
 </script>
   
