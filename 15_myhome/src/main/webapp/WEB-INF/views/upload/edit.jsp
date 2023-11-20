@@ -74,7 +74,7 @@
 		dataType: 'json',
 		success: (resData) => {
 		  if(resData.attachResult){
-			 alert('첨부 파일이 추가되었습니다.');
+			 alert('첨부 파일이 추가되었습니다.'); // 첨부파일
 			 fnAddAttach;
 		  } else {
 			 alert('첨부 파일이 추가되지 않았습니다');
